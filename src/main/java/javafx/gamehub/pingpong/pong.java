@@ -21,9 +21,9 @@ public class pong extends Application {
     private static final int height = 600;
     private static final int PLAYER_HEIGHT = 100;
     private static final int PLAYER_WIDTH = 15;
-    private static final double BALL_R = 15;
-    private int ballYSpeed = 1;
-    private int ballXSpeed = 1;
+    private static final double BALL = 15;
+    private float ballYSpeed = 1;
+    private float ballXSpeed = 1;
     private double playerOneYPos = height / 2;
     private double playerTwoYPos = height / 2;
     private double ballXPos = width / 2;
@@ -75,7 +75,7 @@ public class pong extends Application {
                 playerTwoYPos =  ballYPos > playerTwoYPos + PLAYER_HEIGHT / 2 ?playerTwoYPos += 1: playerTwoYPos - 1;
             }
             //draw the ball
-            gc.fillOval(ballXPos, ballYPos, BALL_R, BALL_R);
+            gc.fillOval(ballXPos, ballYPos, BALL, BALL);
 
         } else {
             //set the start text
@@ -108,10 +108,10 @@ public class pong extends Application {
         }
 
         //increase the speed after the ball hits the player
-        if( ((ballXPos + BALL_R > playerTwoXPos) && ballYPos >= playerTwoYPos && ballYPos <= playerTwoYPos + PLAYER_HEIGHT) ||
+        if( ((ballXPos + BALL > playerTwoXPos) && ballYPos >= playerTwoYPos && ballYPos <= playerTwoYPos + PLAYER_HEIGHT) ||
                 ((ballXPos < playerOneXPos + PLAYER_WIDTH) && ballYPos >= playerOneYPos && ballYPos <= playerOneYPos + PLAYER_HEIGHT)) {
-            ballYSpeed += 1 * Math.signum(ballYSpeed);
-            ballXSpeed += 1 * Math.signum(ballXSpeed);
+            ballYSpeed += 0.40 * Math.signum(ballYSpeed);
+            ballXSpeed += 0.40 * Math.signum(ballXSpeed);
             ballXSpeed *= -1;
             ballYSpeed *= -1;
         }
