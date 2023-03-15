@@ -7,7 +7,7 @@ public class HomePage {
 @FXML
 
 Label Namelabel;
-public void dislplayName (String username ){
+public void displayName (String username ){
     Namelabel.setText("Hello: " + username);
 }
 

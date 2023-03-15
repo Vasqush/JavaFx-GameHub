@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#onHelloButtonClick" prefHeight="360.0" prefWidth="481.0" style="-fx-background-color: #D8D7D5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.MainController">
+<AnchorPane prefHeight="360.0" prefWidth="481.0" style="-fx-background-color: #D8D7D5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.SceneController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#be375f" height="253.0" layoutX="205.0" layoutY="45.0" stroke="RED" strokeType="INSIDE" width="231.0" />
       <Button layoutX="334.0" layoutY="257.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ed8554;" text="Signup" textFill="WHITE" />
@@ -37,7 +37,7 @@
             <Font name="Franklin Gothic Demi Cond" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="71.0" layoutY="197.0" mnemonicParsing="false" onAction="#onHelloButtonClick" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ed8554;" text="Login" textFill="WHITE" />
+      <Button layoutX="71.0" layoutY="197.0" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ed8554;" text="Login" textFill="WHITE" />
       <TextField layoutX="227.0" layoutY="164.0" prefHeight="29.0" prefWidth="185.0" promptText="Email">
          <font>
             <Font name="System Bold" size="14.0" />
