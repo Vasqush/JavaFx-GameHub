@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMouseClicked="#onHelloButtonClick" prefHeight="360.0" prefWidth="481.0" style="-fx-background-color: #D8D7D5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.MainController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#be375f" height="253.0" layoutX="205.0" layoutY="45.0" stroke="RED" strokeType="INSIDE" width="231.0" />
+      <Button layoutX="334.0" layoutY="257.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ed8554;" text="Signup" textFill="WHITE" />
+      <TextField layoutX="227.0" layoutY="117.0" prefHeight="29.0" prefWidth="185.0" promptText="Username">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <PasswordField layoutX="227.0" layoutY="210.0" promptText="Password">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </PasswordField>
+      <Label layoutX="277.0" layoutY="64.0" text="User Login" textFill="#ff8248">
+         <font>
+            <Font name="Gabriola" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="132.0" text="Welcome to GameHub">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="165.0" text="Already have account ?">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="71.0" layoutY="197.0" mnemonicParsing="false" onAction="#onHelloButtonClick" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #ed8554;" text="Login" textFill="WHITE" />
+      <TextField layoutX="227.0" layoutY="164.0" prefHeight="29.0" prefWidth="185.0" promptText="Email">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

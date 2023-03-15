@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="handleBtn2" prefHeight="370.0" prefWidth="481.0" style="-fx-background-color: #D8D7D5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.MainController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff00a8" height="253.0" layoutX="205.0" layoutY="45.0" stroke="RED" strokeType="INSIDE" width="231.0" />
+      <Button layoutX="334.0" layoutY="241.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #050606;" text="Login" textFill="#ff00a8" />
+      <TextField id="LoginLog" layoutX="227.0" layoutY="128.0" prefHeight="29.0" prefWidth="185.0" promptText="Username">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <PasswordField layoutX="227.0" layoutY="195.0" promptText="Password">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </PasswordField>
+      <Label layoutX="292.0" layoutY="72.0" text="User Login" />
+      <Label layoutX="35.0" layoutY="132.0" text="Welcome to GameHub">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="165.0" text="Don't have account please register">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="71.0" layoutY="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #050606;" text="Signup" textFill="#ff00a8" />
+   </children>
+</AnchorPane>
