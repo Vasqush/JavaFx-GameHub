@@ -2,125 +2,166 @@ package javafx.gamehub.Tetris;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Tetris extends Application {
     // The variables
     public static final int MOVE = 35;
     public static final int SIZE = 35;
-    private static final Pane group = new Pane();
+    public static final Pane group = new Pane();
     public static int XMAX = SIZE * 16;
     public static int YMAX = SIZE * 24;
     public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE];
     private static final Scene scene = new Scene(group, XMAX + 350, YMAX);
     public static int score = 0;
-    private static Form object;
-    private static int top = 0;
-    private static boolean game = true;
+    public static Form object;
+    public static int top = 0;
+    public static boolean game = true;
     private static Form nextObj = Controller.makeRect();
-    private static int linesNo = 0;
+    public static int linesNo = 0;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    static Text level = new Text("Lines: ");
+    static Text scoretext = new Text("Score: ");
 
     @Override
-    public void start(Stage stage) throws Exception {
-        for ( int[] a : MESH ) {
+    public void start(Stage stage) {
+        // Initialize mesh
+        for (int[] a : MESH) {
             Arrays.fill(a, 0);
         }
 
+        // Create UI elements
         Line lineHorizontal = new Line(0, 0, XMAX + 5, 0);
         Line line = new Line(XMAX + 5, 0, XMAX + 5, YMAX);
-        Text scoretext = new Text("Score: ");
         scoretext.setStyle("-fx-font: 20 arial;");
-        scoretext.setY(50);
-        scoretext.setX(XMAX + 150);
-        Text level = new Text("Lines: ");
-        level.setStyle("-fx-font: 20 arial;");
-        level.setY(100);
-        level.setX(XMAX + 150);
-        level.setFill(Color.GREEN);
-        group.getChildren().addAll(scoretext, lineHorizontal, line, level);
+        scoretext.relocate(XMAX + 150, 50);
 
-        Form a = nextObj;
-        group.getChildren().addAll(a.a, a.b, a.c, a.d);
-        moveOnKeyPress(a);
-        object = a;
-        nextObj = Controller.makeRect();
+        level.setStyle("-fx-font: 20 arial;");
+        level.relocate(XMAX + 150, 100);
+        level.setFill(Color.GREEN);
+
+        Button quitGame = new Button("Quit");
+        quitGame.setStyle("-fx-font: 16 arial;");
+        quitGame.setPrefWidth(70);
+        quitGame.setPrefHeight(30);
+        quitGame.relocate(XMAX + 150, 350);
+        quitGame.setOnMouseClicked(event -> Controller.quitGame());
+
+        Button startGame = new Button("Start");
+        startGame.setStyle("-fx-font: 16 arial;");
+        startGame.setPrefWidth(70);
+        startGame.setPrefHeight(30);
+        startGame.relocate(XMAX + 150, 300);
+        startGame.setFocusTraversable(false);
+        startGame.setOnMouseClicked(event -> {
+            // Start game
+            Controller.startGame();
+            Form a = nextObj;
+            group.getChildren().addAll(scoretext, lineHorizontal, line, level, startGame, quitGame, a.a, a.b, a.c, a.d);
+            moveOnKeyPress(a);
+            object = a;
+            nextObj = Controller.makeRect();
+        });
+
+        startGame.setFocusTraversable(false);
+        quitGame.setFocusTraversable(false);
+
+        // Add UI elements to group
+        group.getChildren().addAll(scoretext, lineHorizontal, line, level, startGame, quitGame);
+
+        // Set up scene and show stage
         stage.setScene(scene);
         stage.setTitle("T E T R I S");
+        stage.setResizable(false);
         stage.show();
-
-        Timer fall = new Timer();
-        TimerTask task = new TimerTask() {
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        if ( object.a.getY() == 0 || object.b.getY() == 0 || object.c.getY() == 0
-                                || object.d.getY() == 0 )
-                            top++;
-                        else
-                            top = 0;
-
-                        if ( top == 2 ) {
-                            // GAME OVER
-                            Text over = new Text("GAME OVER");
-                            over.setFill(Color.RED);
-                            over.setStyle("-fx-font: 70 arial;");
-                            over.setY(250);
-                            over.setX(60);
-                            group.getChildren().add(over);
-                            game = false;
-                        }
-                        // Exit
-//                        if ( top == 15 ) {
-//                            System.exit(0);
-//                        }
-
-                        if ( game ) {
-                            MoveDown(object);
-                            scoretext.setText("Score: " + Integer.toString(score));
-                            level.setText("Lines: " + Integer.toString(linesNo));
-                        }
-                    }
-                });
-            }
-        };
-        fall.schedule(task, 0, 300);
-    }
-
-    private void moveOnKeyPress(Form form) {
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case RIGHT -> Controller.MoveRight(form);
-                    case DOWN -> {
-                        MoveDown(form);
-                        score++;
-                    }
-                    case LEFT -> Controller.MoveLeft(form);
-                    case UP -> MoveTurn(form);
-                }
-            }
+        stage.setOnCloseRequest(event -> {
+            // Handle the close request
+            Controller.quitGame();
+            Platform.exit();
+            System.exit(0);
         });
     }
 
+
+    private void moveOnKeyPress(Form form) {
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case RIGHT -> Controller.MoveRight(form);
+                case DOWN -> {
+                    MoveDown(form);
+                    score++;
+                }
+                case LEFT -> Controller.MoveLeft(form);
+                case UP -> MoveTurn(form);
+            }
+            event.consume();
+        });
+    }
+    private void RemoveRows() {
+        ArrayList<Node> rects = new ArrayList<>();
+        ArrayList<Integer> lines = new ArrayList<>();
+        ArrayList<Node> newRects = new ArrayList<>();
+        int full = 0;
+        for ( int i = 0; i < MESH[0].length; i++ ) {
+            for ( int[] mesh : MESH ) {
+                if ( mesh[i] == 1 )
+                    full++;
+            }
+            if ( full == MESH.length )
+                lines.add(i);
+            //lines.add(i + lines.size());
+            full = 0;
+        }
+        if ( lines.size() > 0 )
+            do {
+                for ( Node node : Tetris.group.getChildren() ) {
+                    if ( node instanceof Rectangle )
+                        rects.add(node);
+                }
+                score += 50;
+                linesNo++;
+
+                for ( Node node : rects ) {
+                    Rectangle a = (Rectangle) node;
+                    if ( a.getY() == lines.get(0) * SIZE ) {
+                        MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 0;
+                        Tetris.group.getChildren().remove(node);
+                    } else
+                        newRects.add(node);
+                }
+
+                for ( Node node : newRects ) {
+                    Rectangle a = (Rectangle) node;
+                    if ( a.getY() < lines.get(0) * SIZE ) {
+                        MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 0;
+                        a.setY(a.getY() + SIZE);
+                    }
+                }
+                lines.remove(0);
+                rects.clear();
+                newRects.clear();
+                for ( Node node : Tetris.group.getChildren() ) {
+                    if ( node instanceof Rectangle )
+                        rects.add(node);
+                }
+                for ( Node node : rects ) {
+                    Rectangle a = (Rectangle) node;
+                    MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 1;
+
+                }
+                rects.clear();
+            } while (lines.size() > 0);
+    }
     private void MoveTurn(Form form) {
         int f = form.form;
         Rectangle a = form.a;
@@ -409,62 +450,6 @@ public class Tetris extends Application {
         }
     }
 
-    private void RemoveRows() {
-        ArrayList<Node> rects = new ArrayList<Node>();
-        ArrayList<Integer> lines = new ArrayList<Integer>();
-        ArrayList<Node> newrects = new ArrayList<Node>();
-        int full = 0;
-        for ( int i = 0; i < MESH[0].length; i++ ) {
-            for ( int[] mesh : MESH ) {
-                if ( mesh[i] == 1 )
-                    full++;
-            }
-            if ( full == MESH.length )
-                lines.add(i);
-            //lines.add(i + lines.size());
-            full = 0;
-        }
-        if ( lines.size() > 0 )
-            do {
-                for ( Node node : Tetris.group.getChildren() ) {
-                    if ( node instanceof Rectangle )
-                        rects.add(node);
-                }
-                score += 50;
-                linesNo++;
-
-                for ( Node node : rects ) {
-                    Rectangle a = (Rectangle) node;
-                    if ( a.getY() == lines.get(0) * SIZE ) {
-                        MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 0;
-                        Tetris.group.getChildren().remove(node);
-                    } else
-                        newrects.add(node);
-                }
-
-                for ( Node node : newrects ) {
-                    Rectangle a = (Rectangle) node;
-                    if ( a.getY() < lines.get(0) * SIZE ) {
-                        MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 0;
-                        a.setY(a.getY() + SIZE);
-                    }
-                }
-                lines.remove(0);
-                rects.clear();
-                newrects.clear();
-                for ( Node node : Tetris.group.getChildren() ) {
-                    if ( node instanceof Rectangle )
-                        rects.add(node);
-                }
-                for ( Node node : rects ) {
-                    Rectangle a = (Rectangle) node;
-                    MESH[(int) a.getX() / SIZE][(int) a.getY() / SIZE] = 1;
-
-                }
-                rects.clear();
-            } while (lines.size() > 0);
-    }
-
     private void MoveDown(Rectangle rect) {
         if ( rect.getY() + MOVE < YMAX )
             rect.setY(rect.getY() + MOVE);
@@ -486,7 +471,7 @@ public class Tetris extends Application {
             rect.setY(rect.getY() - MOVE);
     }
 
-    private void MoveDown(Form form) {
+    public void MoveDown(Form form) {
         if ( form.a.getY() == YMAX - SIZE || form.b.getY() == YMAX - SIZE || form.c.getY() == YMAX - SIZE
                 || form.d.getY() == YMAX - SIZE || moveA(form) || moveB(form) || moveC(form) || moveD(form) ) {
             MESH[(int) form.a.getX() / SIZE][(int) form.a.getY() / SIZE] = 1;
@@ -547,4 +532,7 @@ public class Tetris extends Application {
         return xb && yb && MESH[((int) rect.getX() / SIZE) + x][((int) rect.getY() / SIZE) - y] == 0;
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

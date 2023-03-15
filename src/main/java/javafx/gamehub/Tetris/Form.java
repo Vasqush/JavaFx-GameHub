@@ -10,14 +10,7 @@ public class Form {
     Rectangle c;
     Rectangle d;
     Color color;
-    private String name;
-
-    public Form(Rectangle a, Rectangle b, Rectangle c, Rectangle d) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
-    }
+    private final String name;
 
     public Form(Rectangle a, Rectangle b, Rectangle c, Rectangle d, String name) {
         this.a = a;
@@ -26,27 +19,13 @@ public class Form {
         this.d = d;
         this.name = name;
         switch (name) {
-            case "j":
-                color = Color.SLATEGRAY;
-                break;
-            case "l":
-                color = Color.DARKGOLDENROD;
-                break;
-            case "o":
-                color = Color.INDIANRED;
-                break;
-            case "s":
-                color = Color.FORESTGREEN;
-                break;
-            case "t":
-                color = Color.CADETBLUE;
-                break;
-            case "z":
-                color = Color.HOTPINK;
-                break;
-            case "i":
-                color = Color.SANDYBROWN;
-                break;
+            case "j" -> color = Color.SLATEGRAY;
+            case "l" -> color = Color.DARKGOLDENROD;
+            case "o" -> color = Color.INDIANRED;
+            case "s" -> color = Color.FORESTGREEN;
+            case "t" -> color = Color.CADETBLUE;
+            case "z" -> color = Color.HOTPINK;
+            case "i" -> color = Color.SANDYBROWN;
         }
         this.a.setFill(color);
         this.b.setFill(color);
