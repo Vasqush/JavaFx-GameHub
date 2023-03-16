@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 public class Tetris extends Application {
     // The variables
-    private static Stage tetrisStage;
     public static final int MOVE = 35;
     public static final int SIZE = 35;
     public static final Pane group = new Pane();
@@ -30,13 +29,11 @@ public class Tetris extends Application {
     public static boolean game = true;
     private static Form nextObj = Controller.makeRect();
     public static int linesNo = 0;
-
     static Text level = new Text("Lines: ");
     static Text scoretext = new Text("Score: ");
 
     @Override
     public void start(Stage stage) {
-        tetrisStage = stage;
         // Initialize mesh
         for (int[] a : MESH) {
             Arrays.fill(a, 0);
@@ -88,12 +85,6 @@ public class Tetris extends Application {
         stage.setTitle("T E T R I S");
         stage.setResizable(false);
         stage.show();
-        stage.setOnCloseRequest(event -> {
-            // Handle the close request
-            stage.close();
-            Platform.exit();
-            System.exit(0);
-        });
     }
     public Scene getScene() {
         return scene;
@@ -168,6 +159,7 @@ public class Tetris extends Application {
                 rects.clear();
             } while (lines.size() > 0);
     }
+
     private void MoveTurn(Form form) {
         int f = form.form;
         Rectangle a = form.a;
@@ -455,11 +447,13 @@ public class Tetris extends Application {
                 break;
         }
     }
+
     private void MoveDown(Rectangle rect) {
         if ( rect.getY() + MOVE < YMAX )
             rect.setY(rect.getY() + MOVE);
 
     }
+
     private void MoveRight(Rectangle rect) {
         if ( rect.getX() + MOVE <= XMAX - SIZE )
             rect.setX(rect.getX() + MOVE);
