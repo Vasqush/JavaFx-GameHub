@@ -1,7 +1,6 @@
 package javafx.gamehub.Tetris;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

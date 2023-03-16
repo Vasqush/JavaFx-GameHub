@@ -1,15 +1,9 @@
 package javafx.gamehub.Tetris;
 
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
