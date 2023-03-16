@@ -14,7 +14,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class pong extends Application {
+public class pong extends Application{
 
     //variable
     private static final int width = 800;
@@ -124,7 +124,4 @@ public class pong extends Application {
     }
 
     // start the application
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
