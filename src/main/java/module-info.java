@@ -7,4 +7,7 @@ module javafx.gamehub {
 
     opens javafx.gamehub.Tictactoe to javafx.fxml;
     exports javafx.gamehub.Tictactoe;
+
+    opens javafx.gamehub.Tetris to  javafx.fxml;
+    exports javafx.gamehub.Tetris;
 }
