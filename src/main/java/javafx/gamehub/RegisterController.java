@@ -1,7 +1,5 @@
 package javafx.gamehub;
 
-
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,93 +14,29 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController {
+public class RegisterController {
     @FXML
-    private Label loginMessageLabel;
+    private Label registerMessageLabel;
     @FXML
     private TextField usernameTextField;
     @FXML
+    private TextField gmailTextField;
+    @FXML
     private PasswordField passwordTextField;
     @FXML
-    private Button loginButton;
-
-    public void loginButtonOnAction(ActionEvent actionEvent) {
+    private Button registerButton;
+    public void registerButtonOnAction(ActionEvent actionEvent) {
         if ( !usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank() ) {
-            loginMessageLabel.setText("You try to login!");
+            registerMessageLabel.setText("You try to register!");
         } else {
-            loginMessageLabel.setText("Please enter username and password!");
+            registerMessageLabel.setText("Please enter username, gmail and password!");
         }
     }
-    public void switchToSignup(ActionEvent event) throws IOException {
-        Parent root = new FXMLLoader(getClass().getResource("Signup.fxml")).load();
+    public void switchToLogin(ActionEvent event) throws IOException {
+        Parent root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
