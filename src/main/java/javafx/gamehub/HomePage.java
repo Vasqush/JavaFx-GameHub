@@ -30,9 +30,4 @@ public void backToLoginOnAction(ActionEvent event) throws IOException {
                 stage.show();
         }
 
-
-
-
-
-
 }

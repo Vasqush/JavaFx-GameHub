@@ -18,7 +18,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#be375f" height="400.0" layoutX="224.0" stroke="#be375f" strokeType="INSIDE" width="378.0" />
-      <Button layoutX="309.0" layoutY="295.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="249.0" style="-fx-background-color: #ff8248;" text="Login" textFill="WHITE">
+      <Button layoutX="309.0" layoutY="295.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="249.0" style="-fx-background-color: #ff8248;" text="Tetris" textFill="WHITE">
          <font>
             <Font name="Gabriola" size="24.0" />
          </font></Button>
