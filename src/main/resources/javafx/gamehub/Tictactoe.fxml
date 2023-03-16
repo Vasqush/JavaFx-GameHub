@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="600.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.Tictactoe.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="600.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.Tictactoe.Controller">
     <children>
         <FlowPane layoutX="188.0" layoutY="115.0" prefHeight="225.0" prefWidth="228.0" style="-fx-border-color: black;">
             <children>
@@ -51,14 +51,14 @@
                     </font></Button>
             </children>
         </FlowPane>
-        <Text fx:id="winnerText" fill="#1cc747" layoutX="182.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tic-Tac-Toe" textAlignment="CENTER" wrappingWidth="237.9443359375">
+        <Text fx:id="winnerText" fill="#ff8248" layoutX="182.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tic-Tac-Toe" textAlignment="CENTER" wrappingWidth="237.9443359375">
             <font>
                 <Font name="System Bold" size="39.0" />
             </font>
         </Text>
-        <Button layoutX="274.0" layoutY="368.0" mnemonicParsing="false" onAction="#restartGame" style="-fx-background-color: #1ed92e; -fx-border-color: black; -fx-border-radius: 5px;" text="Restart" textFill="#1c16d4">
+        <Button layoutX="327.0" layoutY="363.0" mnemonicParsing="false" onAction="#restartGame" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: green; -fx-border-radius: 5px;" text="Start" textFill="WHITE">
             <font>
-                <Font name="System Italic" size="12.0" />
+                <Font name="System Bold Italic" size="12.0" />
             </font></Button>
         <PointLight color="CHARTREUSE" layoutX="143.0" layoutY="56.0" lightOn="true" />
         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
@@ -72,5 +72,10 @@
                 <Image url="@img/cat_image.png" />
             </image>
         </ImageView>
+      <Button layoutX="213.0" layoutY="363.0" mnemonicParsing="false" onAction="#BackToHomePage" prefHeight="35.0" prefWidth="67.0" style="-fx-background-color: red; -fx-border-radius: 5px;" text="Return" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

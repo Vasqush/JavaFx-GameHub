@@ -2,17 +2,23 @@ package javafx.gamehub.Tictactoe;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class GameController implements Initializable{
+public class Controller implements Initializable{
     @FXML
     private Button button1;
 
@@ -125,6 +131,13 @@ public class GameController implements Initializable{
             }
 
         }
+    }
+    public void BackToHomePage(ActionEvent event) throws IOException {
+        Parent root = new FXMLLoader(getClass().getResource("/javafx/gamehub/Home.fxml")).load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 
