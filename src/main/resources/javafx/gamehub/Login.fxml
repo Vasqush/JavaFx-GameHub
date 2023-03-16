@@ -8,44 +8,46 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="handleBtn2" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.gamehub.LoginController">
    <children>
-      <Label layoutX="23.0" layoutY="140.0" prefHeight="30.0" prefWidth="173.0" text="Welcome to GameHub">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#be375f" height="408.0" layoutX="-4.0" layoutY="-3.0" stroke="RED" strokeType="INSIDE" width="230.0" />
+      <Label layoutX="25.0" layoutY="150.0" prefHeight="30.0" prefWidth="173.0" text="Welcome to GameHub" textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Demi Cond" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="30.0" layoutY="180.0" text="Don't have account please register">
+      <Label layoutX="32.0" layoutY="193.0" text="Don't have account please register" textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Demi Cond" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="61.0" layoutY="225.0" mnemonicParsing="false" onAction="#switchToSignup" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: #ff8248;" text="SignUp" textFill="WHITE" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#be375f" height="400.0" layoutX="224.0" stroke="RED" strokeType="INSIDE" width="378.0" />
-      <Button fx:id="loginButton" layoutX="287.0" layoutY="275.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="249.0" style="-fx-background-color: #ff8248;" text="Login" textFill="WHITE" />
-      <TextField id="LoginLog" fx:id="usernameTextField" layoutX="373.0" layoutY="126.0" prefHeight="29.0" prefWidth="185.0" promptText="Username">
+      <Button layoutX="62.0" layoutY="235.0" mnemonicParsing="false" onAction="#switchToSignup" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: #ff8248;" text="Sign Up" textFill="WHITE" />
+      <Button fx:id="loginButton" layoutX="281.0" layoutY="302.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="46.0" prefWidth="249.0" style="-fx-background-color: #ff8248;" text="Login" textFill="WHITE" />
+      <TextField id="LoginLog" fx:id="usernameTextField" layoutX="371.0" layoutY="120.0" prefHeight="29.0" prefWidth="185.0" promptText="Username">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font size="14.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passwordTextField" layoutX="373.0" layoutY="196.0" promptText="Password">
+      <PasswordField fx:id="passwordTextField" layoutX="371.0" layoutY="207.0" prefHeight="30.0" prefWidth="186.0" promptText="Password">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font size="14.0" />
          </font>
       </PasswordField>
-      <Label layoutX="295.0" layoutY="48.0" text="User Login" textFill="#ff8248">
+      <Label layoutX="300.0" layoutY="23.0" text="User Login" textFill="#ff8248">
          <font>
             <Font name="Gill Sans Ultra Bold" size="36.0" />
-         </font></Label>
-      <Label layoutX="263.0" layoutY="126.0" text="Username" textFill="WHITE">
+         </font>
+      </Label>
+      <Label layoutX="256.0" layoutY="120.0" text="Username" textFill="#ff8248">
          <font>
             <Font name="Gabriola" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="262.0" layoutY="195.0" text="Password" textFill="WHITE">
+      <Label layoutX="259.0" layoutY="207.0" text="Password" textFill="#ff8248">
          <font>
             <Font name="Gabriola" size="24.0" />
          </font>
       </Label>
+      <Label fx:id="loginMessageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="78.0" prefHeight="19.0" prefWidth="298.0" textFill="RED" />
    </children>
 </AnchorPane>

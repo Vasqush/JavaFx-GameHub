@@ -2,6 +2,7 @@ package javafx.gamehub;
 
 
 
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class LoginController {
     @FXML
@@ -26,12 +30,18 @@ public class LoginController {
     @FXML
     private Button loginButton;
 
-    public void loginButtonOnAction(ActionEvent actionEvent) {
+
+    public void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
         if ( !usernameTextField.getText().isBlank() && !passwordTextField.getText().isBlank() ) {
-            loginMessageLabel.setText("You try to login!");
+            loginMessageLabel.setText("Login Save!");
+            switchToHome(actionEvent);
         } else {
-            loginMessageLabel.setText("Please enter username and password!");
+            loginMessageLabel.setText("Invalid Username or Password!");
+
         }
+
+
+
     }
     public void switchToSignup(ActionEvent event) throws IOException {
         Parent root = new FXMLLoader(getClass().getResource("Signup.fxml")).load();
@@ -40,6 +50,14 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToHome(ActionEvent event) throws IOException {
+        Parent root = new FXMLLoader(getClass().getResource("Home.fxml")).load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 }
 
