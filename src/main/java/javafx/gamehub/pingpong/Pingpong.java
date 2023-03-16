@@ -34,10 +34,10 @@ public class Pingpong extends Application{
     private boolean gameStarted;
     private int playerOneXPos = 0;
     private double playerTwoXPos = width - PLAYER_WIDTH;
-    Canvas canvas = new Canvas(width, height);
 
     public void start(Stage stage) throws Exception {
         stage.setTitle("Pongpong");
+        Canvas canvas = new Canvas(width, height);
         //background size
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -125,10 +125,4 @@ public class Pingpong extends Application{
         gc.fillRect(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
         gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
     }
-
-
-    /*public static void main(String[] args) {
-        launch();
-    }*/
-    // start the application
 }
