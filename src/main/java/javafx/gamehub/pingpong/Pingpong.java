@@ -1,14 +1,12 @@
 package javafx.gamehub.pingpong;
 
 import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,10 +23,10 @@ public class Pingpong extends Application{
     private static final double BALL = 15;
     private float ballYSpeed = 2;
     private float ballXSpeed = 2;
-    private double playerOneYPos = height / 2;
-    private double playerTwoYPos = height / 2;
-    private double ballXPos = width / 2;
-    private double ballYPos = height / 2;
+    private double playerOneYPos = height / 2.0;
+    private double playerTwoYPos = height / 2.0;
+    private double ballXPos = width / 2.0;
+    private double ballYPos = height / 2.0;
     private int scoreP1 = 0;
     private int scoreP2 = 0;
     private boolean gameStarted;
@@ -47,9 +45,11 @@ public class Pingpong extends Application{
         tl.setCycleCount(Timeline.INDEFINITE);
 
         //mouse control (move and click)
-        if(playerOneYPos > 0)
+        if ( playerOneYPos > 0 ) {
+
         canvas.setOnMouseMoved(e ->  playerOneYPos  = e.getY());
         canvas.setOnMouseClicked(e ->  gameStarted = true);
+        }
         stage.setScene(new Scene(new StackPane(canvas)));
         stage.show();
         tl.play();
@@ -71,10 +71,10 @@ public class Pingpong extends Application{
             ballYPos+=ballYSpeed;
 
             //simple computer opponent who is following the ball
-            if(ballXPos < width - width  / 4) {
-                playerTwoYPos = ballYPos - PLAYER_HEIGHT / 2;
+            if(ballXPos < width - width  / 4.0) {
+                playerTwoYPos = ballYPos - PLAYER_HEIGHT / 2.0;
             }  else {
-                playerTwoYPos =  ballYPos > playerTwoYPos + PLAYER_HEIGHT / 2 ?playerTwoYPos += 1: playerTwoYPos - 1;
+                playerTwoYPos =  ballYPos > playerTwoYPos + PLAYER_HEIGHT / 2.0 ? playerTwoYPos + 1 : playerTwoYPos - 1;
             }
             //draw the ball
             gc.fillOval(ballXPos, ballYPos, BALL, BALL);
@@ -84,10 +84,10 @@ public class Pingpong extends Application{
             //set the start text
             gc.setStroke(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
-            gc.strokeText("Click to Start", width / 2, height / 2);
+            gc.strokeText("Click to Start", width / 2.0, height / 2.0);
             //reset the ball start position
-            ballXPos = width / 2;
-            ballYPos = height / 2;
+            ballXPos = width / 2.0;
+            ballYPos = height / 2.0;
 
             //reset the ball speed and the direction
             ballXSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
@@ -98,12 +98,14 @@ public class Pingpong extends Application{
         if(ballYPos > height || ballYPos < 0) ballYSpeed *=-1;
 
         //if you miss the ball, computer gets a point
+        int playerOneXPos = 0;
         if(ballXPos < playerOneXPos - PLAYER_WIDTH) {
             scoreP2++;
             gameStarted = false;
         }
 
         //if the computer misses the ball, you get a point
+        double playerTwoXPos = width - PLAYER_WIDTH;
         if(ballXPos > playerTwoXPos + PLAYER_WIDTH) {
             scoreP1++;
             gameStarted = false;
@@ -120,7 +122,7 @@ public class Pingpong extends Application{
         }
 
         //draw score
-        gc.fillText(scoreP1 + "\t\t\t\t\t\t\t\t" + scoreP2, width / 2, 100);
+        gc.fillText(scoreP1 + "\t\t\t\t\t\t\t\t" + scoreP2, width / 2.0, 100);
         //draw player 1 & 2
         gc.fillRect(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
         gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);

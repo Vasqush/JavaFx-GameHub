@@ -1,16 +1,14 @@
 package javafx.gamehub;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.gamehub.Tetris.Tetris;
-import javafx.gamehub.pingpong.Pingpong;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import javafx.gamehub.pingpong.Pingpong;
 
 public class HomeController {
     Tetris tetris = new Tetris();

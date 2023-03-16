@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String INSERT_QUERY = "INSERT INTO users (Username, Gmail, Password) VALUES (?, ?, ?)";
+    private static final String INSERT_QUERY = "INSERT INTO user_information (Username, Gmail, Password) VALUES (?, ?, ?)";
     public Connection databaseLink;
     public Connection getConnection(){
         String databaseName = "gamehub";

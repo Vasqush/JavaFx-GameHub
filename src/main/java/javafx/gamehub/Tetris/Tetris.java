@@ -1,7 +1,6 @@
 package javafx.gamehub.Tetris;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -40,6 +39,17 @@ public class Tetris extends Application {
         }
 
         // Create UI elements
+        createTetrisElement(stage);
+
+        // Set up scene and show stage
+        stage.getMaxHeight();
+        stage.setScene(scene);
+        stage.setTitle("T E T R I S");
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    private void createTetrisElement(Stage stage) {
         Line lineHorizontal = new Line(0, 0, XMAX + 5, 0);
         Line line = new Line(XMAX + 5, 0, XMAX + 5, YMAX);
         scoretext.setStyle("-fx-font: 20 arial;");
@@ -55,6 +65,7 @@ public class Tetris extends Application {
         quitGame.setPrefHeight(30);
         quitGame.relocate(XMAX + 150, 350);
         quitGame.setOnMouseClicked(event -> {
+            Controller.resetGame();
             stage.close();
         });
 
@@ -79,15 +90,6 @@ public class Tetris extends Application {
 
         // Add UI elements to group
         group.getChildren().addAll(scoretext, lineHorizontal, line, level, startGame, quitGame);
-
-        // Set up scene and show stage
-        stage.setScene(scene);
-        stage.setTitle("T E T R I S");
-        stage.setResizable(false);
-        stage.show();
-    }
-    public Scene getScene() {
-        return scene;
     }
 
     private void moveOnKeyPress(Form form) {
