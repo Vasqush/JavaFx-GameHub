@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -33,11 +34,11 @@ public class Pingpong extends Application{
     private boolean gameStarted;
     private int playerOneXPos = 0;
     private double playerTwoXPos = width - PLAYER_WIDTH;
+    Canvas canvas = new Canvas(width, height);
 
-    public void start(Stage stage1) throws Exception {
-        stage1.setTitle("Pongpong");
+    public void start(Stage stage) throws Exception {
+        stage.setTitle("Pongpong");
         //background size
-        Canvas canvas = new Canvas(width, height);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //JavaFX Timeline = free form animation defined by KeyFrames and their duration
@@ -49,8 +50,8 @@ public class Pingpong extends Application{
         if(playerOneYPos > 0)
         canvas.setOnMouseMoved(e ->  playerOneYPos  = e.getY());
         canvas.setOnMouseClicked(e ->  gameStarted = true);
-        stage1.setScene(new Scene(new StackPane(canvas)));
-        stage1.show();
+        stage.setScene(new Scene(new StackPane(canvas)));
+        stage.show();
         tl.play();
     }
 
@@ -78,21 +79,19 @@ public class Pingpong extends Application{
             //draw the ball
             gc.fillOval(ballXPos, ballYPos, BALL, BALL);
 
-        } else {
+        }
+        else {
             //set the start text
             gc.setStroke(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
             gc.strokeText("Click to Start", width / 2, height / 2);
-            gc.strokeText("Esc to Go Back", width / 2, height / 1.75);
-
-
             //reset the ball start position
             ballXPos = width / 2;
             ballYPos = height / 2;
 
             //reset the ball speed and the direction
-            ballXSpeed = new Random().nextInt(2) == 0 ? 1: -1;
-            ballYSpeed = new Random().nextInt(2) == 0 ? 1: -1;
+            ballXSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
+            ballYSpeed = new Random().nextInt(2) == 0 ? 1 : -1;
         }
 
         //makes sure the ball stays in the canvas
@@ -126,6 +125,7 @@ public class Pingpong extends Application{
         gc.fillRect(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
         gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
     }
+
 
     /*public static void main(String[] args) {
         launch();
