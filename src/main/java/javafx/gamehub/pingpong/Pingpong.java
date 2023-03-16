@@ -1,6 +1,7 @@
 package javafx.gamehub.pingpong;
 
 import java.util.Random;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -14,16 +15,15 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class pong extends Application{
-
+public class Pingpong extends Application{
     //variable
     private static final int width = 800;
     private static final int height = 600;
     private static final int PLAYER_HEIGHT = 100;
     private static final int PLAYER_WIDTH = 15;
     private static final double BALL = 15;
-    private float ballYSpeed = 1;
-    private float ballXSpeed = 1;
+    private float ballYSpeed = 2;
+    private float ballXSpeed = 2;
     private double playerOneYPos = height / 2;
     private double playerTwoYPos = height / 2;
     private double ballXPos = width / 2;
@@ -34,8 +34,8 @@ public class pong extends Application{
     private int playerOneXPos = 0;
     private double playerTwoXPos = width - PLAYER_WIDTH;
 
-    public void start(Stage stage) throws Exception {
-        stage.setTitle("Pongpong");
+    public void start(Stage stage1) throws Exception {
+        stage1.setTitle("Pongpong");
         //background size
         Canvas canvas = new Canvas(width, height);
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -46,10 +46,11 @@ public class pong extends Application{
         tl.setCycleCount(Timeline.INDEFINITE);
 
         //mouse control (move and click)
+        if(playerOneYPos > 0)
         canvas.setOnMouseMoved(e ->  playerOneYPos  = e.getY());
         canvas.setOnMouseClicked(e ->  gameStarted = true);
-        stage.setScene(new Scene(new StackPane(canvas)));
-        stage.show();
+        stage1.setScene(new Scene(new StackPane(canvas)));
+        stage1.show();
         tl.play();
     }
 
@@ -82,6 +83,8 @@ public class pong extends Application{
             gc.setStroke(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
             gc.strokeText("Click to Start", width / 2, height / 2);
+            gc.strokeText("Esc to Go Back", width / 2, height / 1.75);
+
 
             //reset the ball start position
             ballXPos = width / 2;
@@ -110,8 +113,9 @@ public class pong extends Application{
         //increase the speed after the ball hits the player
         if( ((ballXPos + BALL > playerTwoXPos) && ballYPos >= playerTwoYPos && ballYPos <= playerTwoYPos + PLAYER_HEIGHT) ||
                 ((ballXPos < playerOneXPos + PLAYER_WIDTH) && ballYPos >= playerOneYPos && ballYPos <= playerOneYPos + PLAYER_HEIGHT)) {
-            ballYSpeed += 0.40 * Math.signum(ballYSpeed);
-            ballXSpeed += 0.40 * Math.signum(ballXSpeed);
+            ballYSpeed += 0.7 * Math.signum(ballYSpeed);
+            ballXSpeed += 0.7 * Math.signum(ballXSpeed);
+            ballYSpeed = new Random().nextInt(3) == 0 ? 1: -1;
             ballXSpeed *= -1;
             ballYSpeed *= -1;
         }
@@ -123,8 +127,8 @@ public class pong extends Application{
         gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         launch();
-    }
+    }*/
     // start the application
 }
