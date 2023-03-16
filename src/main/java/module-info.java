@@ -10,4 +10,7 @@ module javafx.gamehub {
 
     opens javafx.gamehub.Tetris to  javafx.fxml;
     exports javafx.gamehub.Tetris;
+
+    exports javafx.gamehub.pingpong;
+
 }
