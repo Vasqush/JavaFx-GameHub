@@ -4,7 +4,5 @@ module javafx.gamehub {
 
 
     opens javafx.gamehub to javafx.fxml;
-    exports javafx.gamehub;
-
     exports javafx.gamehub.pingpong;
 }

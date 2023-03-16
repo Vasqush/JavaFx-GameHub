@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MenuController implements Initializable {
+public class MenuController {
 
-    @FXML
+   /* @FXML
     private BorderPane bp;
     @FXML
     private AnchorPane ap;
@@ -50,5 +50,5 @@ public class MenuController implements Initializable {
             throw new RuntimeException(e);
         }
         bp.setCenter(root);
-    }
+    }*/
 }

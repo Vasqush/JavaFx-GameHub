@@ -123,5 +123,8 @@ public class pong extends Application{
         gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
     }
 
+    public static void main(String[] args) {
+        launch();
+    }
     // start the application
 }
