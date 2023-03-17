@@ -21,8 +21,8 @@ public class Pingpong extends Application{
     private static final int PLAYER_HEIGHT = 100;
     private static final int PLAYER_WIDTH = 15;
     private static final double BALL = 15;
-    private float ballYSpeed = 2;
-    private float ballXSpeed = 2;
+    private double ballYSpeed = 2.5;
+    private double ballXSpeed = 2.5;
     private double playerOneYPos = height / 2.0;
     private double playerTwoYPos = height / 2.0;
     private double ballXPos = width / 2.0;
@@ -113,9 +113,9 @@ public class Pingpong extends Application{
         //increase the speed after the ball hits the player
         if( ((ballXPos + BALL > playerTwoXPos) && ballYPos >= playerTwoYPos && ballYPos <= playerTwoYPos + PLAYER_HEIGHT) ||
                 ((ballXPos < playerOneXPos + PLAYER_WIDTH) && ballYPos >= playerOneYPos && ballYPos <= playerOneYPos + PLAYER_HEIGHT)) {
+            ballYSpeed += 0.3 * Math.signum(ballYSpeed);
+            ballXSpeed += 0.3 * Math.signum(ballXSpeed);
             ballYSpeed = new Random().nextInt(2) == 0 ? 1: -1;
-            ballYSpeed += 0.5 * Math.signum(ballYSpeed);
-            ballXSpeed += 0.5 * Math.signum(ballXSpeed);
             ballXSpeed *= -1;
             ballYSpeed *= -1;
         }
