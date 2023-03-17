@@ -32,6 +32,7 @@ public class Pingpong extends Application{
     private boolean gameStarted;
     private int playerOneXPos = 0;
     private double playerTwoXPos = width - PLAYER_WIDTH;
+    private int highscore;
 
     public void start(Stage stage) throws Exception {
         stage.setTitle("Pongpong");
@@ -98,14 +99,12 @@ public class Pingpong extends Application{
         if(ballYPos > height || ballYPos < 0) ballYSpeed *=-1;
 
         //if you miss the ball, computer gets a point
-        int playerOneXPos = 0;
         if(ballXPos < playerOneXPos - PLAYER_WIDTH) {
             scoreP2++;
             gameStarted = false;
         }
 
         //if the computer misses the ball, you get a point
-        double playerTwoXPos = width - PLAYER_WIDTH;
         if(ballXPos > playerTwoXPos + PLAYER_WIDTH) {
             scoreP1++;
             gameStarted = false;
