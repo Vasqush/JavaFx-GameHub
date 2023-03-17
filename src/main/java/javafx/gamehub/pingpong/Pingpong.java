@@ -41,7 +41,7 @@ public class Pingpong extends Application{
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //JavaFX Timeline = free form animation defined by KeyFrames and their duration
-        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10), e -> run(gc)));
+        Timeline tl = new Timeline(new KeyFrame(Duration.millis(5), e -> run(gc)));
         //number of cycles in animation INDEFINITE = repeat indefinitely
         tl.setCycleCount(Timeline.INDEFINITE);
 
@@ -79,13 +79,13 @@ public class Pingpong extends Application{
             }
             //draw the ball
             gc.fillOval(ballXPos, ballYPos, BALL, BALL);
-
         }
         else {
             //set the start text
             gc.setStroke(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
             gc.strokeText("Click to Start", width / 2.0, height / 2.0);
+//            gc.strokeText("HighScore: ", width / 2.05, height / 1.75);
             //reset the ball start position
             ballXPos = width / 2.0;
             ballYPos = height / 2.0;
@@ -113,9 +113,9 @@ public class Pingpong extends Application{
         //increase the speed after the ball hits the player
         if( ((ballXPos + BALL > playerTwoXPos) && ballYPos >= playerTwoYPos && ballYPos <= playerTwoYPos + PLAYER_HEIGHT) ||
                 ((ballXPos < playerOneXPos + PLAYER_WIDTH) && ballYPos >= playerOneYPos && ballYPos <= playerOneYPos + PLAYER_HEIGHT)) {
-            ballYSpeed += 0.7 * Math.signum(ballYSpeed);
-            ballXSpeed += 0.7 * Math.signum(ballXSpeed);
-            ballYSpeed = new Random().nextInt(3) == 0 ? 1: -1;
+            ballYSpeed = new Random().nextInt(2) == 0 ? 1: -1;
+            ballYSpeed += 0.5 * Math.signum(ballYSpeed);
+            ballXSpeed += 0.5 * Math.signum(ballXSpeed);
             ballXSpeed *= -1;
             ballYSpeed *= -1;
         }
