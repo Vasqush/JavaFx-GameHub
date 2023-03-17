@@ -35,7 +35,7 @@ public class Pingpong extends Application{
     private int highscore;
 
     public void start(Stage stage) throws Exception {
-        stage.setTitle("Pongpong");
+        stage.setTitle("Pingpong");
         Canvas canvas = new Canvas(width, height);
         //background size
         GraphicsContext gc = canvas.getGraphicsContext2D();

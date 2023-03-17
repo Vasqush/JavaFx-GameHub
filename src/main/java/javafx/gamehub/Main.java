@@ -9,12 +9,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("Login.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("Signup.fxml"));
             Scene scene = new Scene(root.load());
             stage.setScene(scene);
             stage.setTitle("GameHub");
             stage.show();
-            System.out.println("main");
         } catch (Exception e) {
             e.printStackTrace();
         }

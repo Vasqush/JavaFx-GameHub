@@ -12,7 +12,7 @@ public class DatabaseConnection {
     public Connection getConnection(){
         String databaseName = "gamehub";
         String databaseUser = "root";
-        String databasePassword = "";
+        String databasePassword = "vaneath@3";
         String url = "jdbc:mysql://localhost/" + databaseName;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -26,7 +26,7 @@ public class DatabaseConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/gamehub", "root", "");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/gamehub", "root", "vaneath@3");
 
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY);
             preparedStatement.setString(1, username);
